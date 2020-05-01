@@ -1,0 +1,15 @@
+<h1>Dog Registration Form</h1>
+
+<%= form_for @dog do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label :photo %>
+  <%= f.file_field :photo %><br>
+
+  <%= f.label :records %>
+  <%= f.file_field :records %><br>
+  <% :breed %>
+  <% :sub_breed %>
+  <%= f.submit 'Submit' %>
+<% end %>
