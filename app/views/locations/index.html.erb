@@ -1,0 +1,7 @@
+<% @location.each do |location| %>
+  <%= location.name %>
+  <%= location.description %>
+    <% location.images.each do |image| %>
+      <%= image_tag image %>
+    <% end %>
+<% end %>
