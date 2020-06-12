@@ -18,14 +18,14 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     @location.images.attach(params[:location][:images])
-    @location.save
-    redirect_to locations_path
+    @location.save!
+    redirect_to dogs_path
   end
 
   private
 
   def location_params
-    params.require(:location).permit(:name, :description, images: [])
+    params.require(:location).permit(:name, :description, :small, :medium, :large, images: [])
   end
 
 

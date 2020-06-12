@@ -1,13 +1,17 @@
 <h1>Dog Registration Form</h1>
 
 <%= form_with model: @dog, local: true do |f| %>
-  <%= f.label :name %>
+
+  <%= f.label :name, "Dog Name"  %>
   <%= f.text_field :name %><br>
 
-  <%= f.label :images %>
+  <%= f.label :breeds, "Breed" %>
+  <%= f.collection_select :breeds_id, Breed.order(:name), :id, :name %><br>
+
+  <%= f.label :images, "Photo" %>
   <%= f.file_field :images, multiple: true %><br>
 
-  <%= f.label :records %>
+  <%= f.label :records, "Vet Records" %>
   <%= f.file_field :records, multiple: true  %><br>
 
   <%= f.hidden_field :user_id, value: current_user.id %>

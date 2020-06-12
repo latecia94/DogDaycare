@@ -1,16 +1,20 @@
 <h1>Admin List</h1>
 
-<table>
-  <tr>
-    <th>Owner</th>
-    <th>Dog</th>
-  </tr>
-  <% @user.each do |user| %>
-  <tr>
-    <td><%= user.email %></td>
-    <% user.dogs.each do |dog| %>
-      <td> <%= dog.name %></td>
+<div>
+  <%= form_tag admins_path, :method => "get" do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Dogs" %>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>
+
+
+
+<div>
+  <% @dog.each do |dog| %>
+    <%= dog.name %><br>
+    <% dog.records.each do |records|  %>
+      - <%= records.name %><br>
     <% end %>
   <% end %>
-</table>
+</div>
 

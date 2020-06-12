@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_042206) do
+ActiveRecord::Schema.define(version: 2020_06_05_055013) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,22 +33,41 @@ ActiveRecord::Schema.define(version: 2020_05_08_042206) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "dogs_id"
+    t.integer "locations_id"
+    t.index ["dogs_id"], name: "index_bookings_on_dogs_id"
+    t.index ["locations_id"], name: "index_bookings_on_locations_id"
+  end
+
   create_table "breeds", force: :cascade do |t|
     t.string "name"
-    t.integer "weight"
+    t.string "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "capacities", force: :cascade do |t|
+    t.integer "small"
+    t.integer "medium"
+    t.integer "large"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
-    t.string "photo"
-    t.string "records"
     t.string "breed"
-    t.string "sub_breed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "breeds_id"
+    t.boolean "approved", default: false
+    t.string "size"
+    t.index ["breeds_id"], name: "index_dogs_on_breeds_id"
     t.index ["user_id"], name: "index_dogs_on_user_id"
   end
 
@@ -58,6 +77,11 @@ ActiveRecord::Schema.define(version: 2020_05_08_042206) do
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "capacities_id"
+    t.integer "small"
+    t.integer "medium"
+    t.integer "large"
+    t.index ["capacities_id"], name: "index_locations_on_capacities_id"
   end
 
   create_table "sub_breeds", force: :cascade do |t|

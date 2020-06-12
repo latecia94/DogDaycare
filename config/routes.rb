@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :dogs
   resources :locations
   resources :admins
+  resources :bookings
 
   root 'dogs#index'
 end
